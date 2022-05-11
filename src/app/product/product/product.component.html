@@ -1,0 +1,82 @@
+
+<div class="card my-4 mx-3 my-3" style="width: 90vw;">
+    <div class="card-header">
+        Power calculator
+       </div>
+    <div style="width:300px ; " class="ms-2 my-2">
+        <label for="">number : </label>
+        <input type="text" name="" id="" [(ngModel)]="num">
+    </div>
+   <div style="width:300px ; " class="ms-2 my-2">
+    <label for="">power : </label>
+    <input type="text" [(ngModel)]="power">
+   </div>
+   
+    <button style="width:100px;" class="btn btn-success my-2" (click)="show_result()">equals</button>
+    <div *ngIf="show_res"  style="width:300px ; " class="ms-2 my-2">
+        <label for="">result :</label>
+        <span style="margin: 0; width: 100px;" class="mx-0 my-0">{{num | powerToX:power}}</span>
+    </div>
+    
+</div>
+<div>
+
+</div>
+
+
+<div class="card my-4 mx-3" style="width: 90vw;">
+    <div class="card-header">
+     Product list
+    </div>
+    <div class="my-5 ms-3">
+        <label class="" style="width: 100px;" >filter by :</label>
+<input type="text"  name="filter" class="" style="width:200px;" (keyup)="filter($event)">
+    </div>
+
+
+<table class="table ">
+    <thead>
+      <tr>
+        <th scope="col"><button (click)="show_img()" class="btn btn-primary">show image</button> <button (click)="hide_img()" class="btn btn-primary ms-3">hide image</button></th>
+        <th scope="col">product</th>
+        <th scope="col">code</th>
+        <th scope="col">available</th>
+        <th>price</th>
+        <th>5 star rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of products |arraySplice:filter_value">
+          <td *ngIf="show==false"></td>
+       <td *ngIf="show==true"><img style="width:100px ; height:50px" src="{{item.image}}" alt="#"></td>
+        <td>{{item.name | stringConvert }}</td>
+        <td>{{item.code}}</td>
+        <td>{{item.available | date:'MMMM dd,yyyy'}}</td>
+        <td>{{item.price |currency:'$'}}</td>
+        <td><app-rate [rating]="item.rating" ></app-rate></td>
+      </tr>
+     
+    </tbody>
+  </table>
+  
+  </div>
+  <div class="card my-4 mx-3 my-3" style="width: 90vw;">
+    <div class="card-header">
+       prime-ng features
+       </div>
+       <div>
+        <!-- <input type="password" pPassword /> -->
+        <label for="">password</label>
+        <p-password></p-password>
+        <hr>
+        <label for="">calendar</label>
+        <p-calendar  ></p-calendar>
+        <hr>
+        <label for="">rating</label>
+        <p-rating></p-rating>
+        <hr>
+        <label for="">menu toggle</label>
+        <p-menu [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" #menu [popup]="true" [model]="items"></p-menu>
+<button type="button" pButton icon="pi pi-list" label="Show" (click)="menu.toggle($event)"></button>
+       </div>
+       </div>
